@@ -30,7 +30,9 @@ Todo:
 Infos:
 ------------
  - Save data in ? Format
-
+ 
+ - Speaker identification tutorial:
+    https://medium.com/analytics-vidhya/building-a-speaker-identification-system-from-scratch-with-deep-learning-f4c4aa558a56
 
 ------------
 
