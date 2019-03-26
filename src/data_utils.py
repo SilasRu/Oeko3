@@ -35,7 +35,7 @@ class DataUtils():
         plt.imshow(np.log(spectrogram))
         plt.ylabel('Frequency [Hz]')
         plt.xlabel('Time [sec]')
-        plt.savefig(self.speaker_png_path +'{}.png'.format(filename))
+        plt.savefig(os.path.join(self.speaker_png_path ,'{}.png'.format(filename)))
         
     def mel_spectrogram_conversion(self, file):
         filename = file.replace('.wav', '')
@@ -49,10 +49,8 @@ class DataUtils():
         plt.colorbar(format='%+2.0f dB')
         plt.title('Mel spectrogram')
         plt.tight_layout()
-        plt.savefig(self.speaker_mel_png_path +'{}.png'.format(filename))
+        plt.savefig(os.path.join(self.speaker_mel_png_path +'{}.png'.format(filename)))
             
-
-        
 
 # =============================================================================
 # Usage
@@ -63,19 +61,4 @@ utils = DataUtils('ritz')
 
 # Spectrogram conversion
 for i in utils.read_folder_content():
-        utils.original_spectrogram_conversion(i)
-        
-
-
-        
-#sample_rate, samples = librosa.load('1_august_000.wav')
-#spectrogram = librosa.feature.melspectrogram(y=sample_rate, sr=samples, n_mels = 128, fmax= 8000)
-#
-#plt.figure(figsize=(10, 4))
-#librosa.display.specshow(librosa.power_to_db(spectrogram,ref=np.max),
-#                          y_axis='mel', fmax=8000,
-#                          x_axis='time')
-#plt.colorbar(format='%+2.0f dB')
-#plt.title('Mel spectrogram')
-#plt.tight_layout()
-#plt.show()
+    utils.original_spectrogram_conversion(i)
