@@ -57,7 +57,7 @@ class DataUtils():
 
         
 
-utils = DataUtils('goessi')
+utils = DataUtils('projer')
 utils.speaker_mel_png_path
 utils.read_folder_content()
 
