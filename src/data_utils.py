@@ -13,7 +13,7 @@ import librosa.display
 
 
 # File directories
-data_filedir = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'data', 'external', 'train')
+data_filedir = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'data', 'train')
 
 class DataUtils():
     def __init__(self, speaker):
