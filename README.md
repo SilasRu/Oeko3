@@ -6,10 +6,8 @@ Folder structure
 ------------
     │
     ├── data
-    │   ├── external            <- Data from third party sources.
     │       ├── train               <- Speaker train datasets
     │       ├── test                <- Arena dataset
-    │   ├── processed           <- The data produced from the model.
     │
     ├── src                
     │   ├── model.py            <- Speaker recognition model
