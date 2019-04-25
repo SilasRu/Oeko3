@@ -13,7 +13,7 @@ import librosa.display
 
 
 # File directories
-data_filedir = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'data', 'train')
+data_filedir = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'data', 'train', 'audio_files')
 
 class DataUtils():
     def __init__(self, speaker):
@@ -56,7 +56,7 @@ class DataUtils():
 # Usage
 # =============================================================================
 
-utils = DataUtils('roesti')
+utils = DataUtils('projer')
 utils.speaker_mel_png_path
 utils.read_folder_content()
 
