@@ -14,13 +14,19 @@ import librosa.display
 
 # File directories
 data_filedir = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'data', 'train', 'audio_files')
+data_filedir_test = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'data', 'test', 'mono')
 
 class DataUtils():
     def __init__(self, speaker):
         self.speaker = speaker
-        self.speaker_path = os.path.join(data_filedir, self.speaker)
-        self.speaker_png_path = os.path.join(self.speaker_path, 'spectrograms')
-        self.speaker_mel_png_path = os.path.join(self.speaker_path , 'mel_spectrograms')
+        if self.speaker == 'test':
+            self.speaker_path = data_filedir_test
+            self.speaker_png_path = os.path.join(data_filedir_test, os.pardir, 'spectrograms')
+
+        else:
+            self.speaker_path = os.path.join(data_filedir, self.speaker)
+            self.speaker_png_path = os.path.join(self.speaker_path, 'spectrograms')
+            self.speaker_mel_png_path = os.path.join(self.speaker_path , 'mel_spectrograms')
 
         
     def read_folder_content(self):
@@ -56,11 +62,14 @@ class DataUtils():
 # Usage
 # =============================================================================
 
-utils = DataUtils('projer')
+utils = DataUtils('test')
 utils.speaker_mel_png_path
-utils.read_folder_content()
-
+datalist = utils.read_folder_content()[3900:]
+len(utils.read_folder_content())
 
 # Spectrogram conversion
 for i in utils.read_folder_content():
+    utils.original_spectrogram_conversion(i)
+
+for i in datalist:
     utils.original_spectrogram_conversion(i)
