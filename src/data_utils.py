@@ -14,14 +14,15 @@ import librosa.display
 
 # File directories
 data_filedir = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'data', 'train', 'audio_files')
-data_filedir_test = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'data', 'test', 'mono')
+data_filedir_test = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'data', 'test', 'mono', 'mono_rn')
 
 class DataUtils():
     def __init__(self, speaker):
         self.speaker = speaker
         if self.speaker == 'test':
             self.speaker_path = data_filedir_test
-            self.speaker_png_path = os.path.join(data_filedir_test, os.pardir, 'spectrograms')
+            self.speaker_png_path = os.path.join(data_filedir_test, os.pardir, os.pardir, os.pardir,
+                                                 'train', 'audio_files', 'rest_noise')
 
         else:
             self.speaker_path = os.path.join(data_filedir, self.speaker)
