@@ -63,9 +63,8 @@ class AudioConvert():
 
 
 # Create y_test for arena
-def create_y_test():
-    path = 'D:/GitHub/Oeko3/data/test'
-    speaker_list = pd.read_csv(os.path.join(path, 'speaker_list.csv'))
+def create_y_test(speaker_list):
+    speaker_list = pd.read_csv(speaker_list)
 
     speakers = {'Rytz Regula': 0,
                 'Projer Jonas': 1,
