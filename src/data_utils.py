@@ -62,35 +62,39 @@ class AudioConvert():
         plt.savefig(os.path.join(self.speaker_mel_png_path +'{}.png'.format(filename)))
 
 
-# Create y_test for arena
-def create_y_test(speaker_list):
-    speaker_list = pd.read_csv(speaker_list)
 
-    speakers = {'Rytz Regula': 0,
-                'Projer Jonas': 1,
-                'Gössi Petra': 2,
-                'Berset Alain': 3,
-                'Rösti Albert': 4}
+class Utils():
+    def __init__(self):
+        pass
+        # Create y_test for arena
+        def create_y_test(speaker_list):
+        speaker_list = pd.read_csv(speaker_list)
 
-    y_test = list()
-    # Loop trough speaker_list
-    for row in range(len(speaker_list)):
-        current_speaker = speaker_list['Wer'][row]
-        # Parse the time strings for each row
-        t1 = datetime.strptime(speaker_list['Von'][row], '%H:%M:%S')
-        t2 = datetime.strptime(speaker_list['Bis'][row], '%H:%M:%S')
-        # Calculate time delta
-        delta = int((t2-t1).total_seconds())
+        speakers = {'Rytz Regula': 0,
+                    'Projer Jonas': 1,
+                    'Gössi Petra': 2,
+                    'Berset Alain': 3,
+                    'Rösti Albert': 4}
 
-        # Append speaker variable to y_test
-        if current_speaker in speakers.keys():
-            y_test.extend([speakers[current_speaker]]*delta)
-        else:
-            y_test.extend([5]*delta)
-    return y_test
+        y_test = list()
+        # Loop trough speaker_list
+        for row in range(len(speaker_list)):
+            current_speaker = speaker_list['Wer'][row]
+            # Parse the time strings for each row
+            t1 = datetime.strptime(speaker_list['Von'][row], '%H:%M:%S')
+            t2 = datetime.strptime(speaker_list['Bis'][row], '%H:%M:%S')
+            # Calculate time delta
+            delta = int((t2-t1).total_seconds())
+
+            # Append speaker variable to y_test
+            if current_speaker in speakers.keys():
+                y_test.extend([speakers[current_speaker]]*delta)
+            else:
+                y_test.extend([5]*delta)
+        return y_test
 
 
-y_test = create_y_test()
+# y_test = create_y_test()
 
 
 
@@ -98,14 +102,14 @@ y_test = create_y_test()
 # Usage
 # =============================================================================
 
-utils = DataUtils('test')
-utils.speaker_mel_png_path
-datalist = utils.read_folder_content()[3900:]
-len(utils.read_folder_content())
-
-# Spectrogram conversion
-for i in utils.read_folder_content():
-    utils.original_spectrogram_conversion(i)
-
-for i in datalist:
-    utils.original_spectrogram_conversion(i)
+# utils = DataUtils('test')
+# utils.speaker_mel_png_path
+# datalist = utils.read_folder_content()[3900:]
+# len(utils.read_folder_content())
+#
+# # Spectrogram conversion
+# for i in utils.read_folder_content():
+#     utils.original_spectrogram_conversion(i)
+#
+# for i in datalist:
+#     utils.original_spectrogram_conversion(i)
