@@ -66,9 +66,10 @@ class AudioConvert():
 class Utils():
     def __init__(self):
         pass
-        # Create y_test for arena
-        def create_y_test(speaker_list):
-        speaker_list = pd.read_csv(speaker_list)
+
+    # Create y_test for arena
+    def create_y_test(self, speaker_list):
+        speaker_df = pd.read_csv(speaker_list)
 
         speakers = {'Rytz Regula': 0,
                     'Projer Jonas': 1,
@@ -78,11 +79,11 @@ class Utils():
 
         y_test = list()
         # Loop trough speaker_list
-        for row in range(len(speaker_list)):
-            current_speaker = speaker_list['Wer'][row]
+        for row in range(len(speaker_df)):
+            current_speaker = speaker_df['Wer'][row]
             # Parse the time strings for each row
-            t1 = datetime.strptime(speaker_list['Von'][row], '%H:%M:%S')
-            t2 = datetime.strptime(speaker_list['Bis'][row], '%H:%M:%S')
+            t1 = datetime.strptime(speaker_df['Von'][row], '%H:%M:%S')
+            t2 = datetime.strptime(speaker_df['Bis'][row], '%H:%M:%S')
             # Calculate time delta
             delta = int((t2-t1).total_seconds())
 
