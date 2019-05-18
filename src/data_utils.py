@@ -10,13 +10,16 @@ import librosa
 from scipy import signal
 from scipy.io import wavfile
 import librosa.display
+import pandas as pd
+from datetime import datetime
+
 
 
 # File directories
 data_filedir = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'data', 'train', 'audio_files')
 data_filedir_test = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'data', 'test', 'mono', 'mono_rn')
 
-class DataUtils():
+class AudioConvert():
     def __init__(self, speaker):
         self.speaker = speaker
         if self.speaker == 'test':
@@ -57,7 +60,40 @@ class DataUtils():
         plt.title('Mel spectrogram')
         plt.tight_layout()
         plt.savefig(os.path.join(self.speaker_mel_png_path +'{}.png'.format(filename)))
-            
+
+
+# Create y_test for arena
+def create_y_test():
+    path = 'D:/GitHub/Oeko3/data/test'
+    speaker_list = pd.read_csv(os.path.join(path, 'speaker_list.csv'))
+
+    speakers = {'Rytz Regula': 0,
+                'Projer Jonas': 1,
+                'Gössi Petra': 2,
+                'Berset Alain': 3,
+                'Rösti Albert': 4}
+
+    y_test = list()
+    # Loop trough speaker_list
+    for row in range(len(speaker_list)):
+        current_speaker = speaker_list['Wer'][row]
+        # Parse the time strings for each row
+        t1 = datetime.strptime(speaker_list['Von'][row], '%H:%M:%S')
+        t2 = datetime.strptime(speaker_list['Bis'][row], '%H:%M:%S')
+        # Calculate time delta
+        delta = int((t2-t1).total_seconds())
+
+        # Append speaker variable to y_test
+        if current_speaker in speakers.keys():
+            y_test.extend([speakers[current_speaker]]*delta)
+        else:
+            y_test.extend([5]*delta)
+    return y_test
+
+
+y_test = create_y_test()
+
+
 
 # =============================================================================
 # Usage
