@@ -90,8 +90,8 @@ class Utils():
             # Append speaker variable to y_test
             if current_speaker in speakers.keys():
                 y_test.extend([speakers[current_speaker]]*delta)
-            # else:
-             #   y_test.extend([3]*delta)
+            else:
+                y_test.extend([5]*delta)
         return y_test
 
 
