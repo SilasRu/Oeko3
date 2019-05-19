@@ -71,11 +71,11 @@ class Utils():
     def create_y_test(self, speaker_list):
         speaker_df = pd.read_csv(speaker_list)
 
-        speakers = {'Rytz Regula': 5,
+        speakers = {'Rytz Regula': 4,
                     'Projer Jonas': 2,
                     'Gössi Petra': 1,
                     'Berset Alain': 0,
-                    'Rösti Albert': 4}
+                    'Rösti Albert': 3}
 
         y_test = list()
         # Loop trough speaker_list
@@ -90,8 +90,8 @@ class Utils():
             # Append speaker variable to y_test
             if current_speaker in speakers.keys():
                 y_test.extend([speakers[current_speaker]]*delta)
-            else:
-                y_test.extend([3]*delta)
+            # else:
+             #   y_test.extend([3]*delta)
         return y_test
 
 
