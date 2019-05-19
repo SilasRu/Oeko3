@@ -1,6 +1,6 @@
 Oeko3
 ==============================
-
+The main file is under CNN_model.ipynb and can be run with Google Colab. 
 
 Folder structure
 ------------
@@ -10,15 +10,14 @@ Folder structure
     │       ├── test                <- Arena dataset
     │
     ├── src                
-    │   ├── model.py            <- Speaker recognition model
-        ├── data_utils.py       <- Data transformation functions
+    │       ├── data_utils.py       <- Data transformation functions
 --------
 
 
 
 Todo:
 ------------
- - Speaker training datasets
+ - Finish writing
 
 
 ------------
